@@ -3,7 +3,7 @@ function getListStudentIds(arr) {
         return [];
     }
 
-    return arr.map((student) => student.id);
+    return arr.filter((student) => student.id > 100).map((student) => student.id);
 }
 
 export default getListStudentIds;
