@@ -1,6 +1,5 @@
-const calculateNumber = require('./2-calcul_chai.js');
-
 let expect;
+const calculateNumber = require('./2-calcul_chai.js');
 
 describe('calculateNumber', function() {
     before(async function() {
