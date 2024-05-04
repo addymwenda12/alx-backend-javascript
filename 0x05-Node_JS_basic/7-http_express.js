@@ -6,17 +6,17 @@ const databasePath = process.argv[2];
 const app = express();
 
 app.get('/', (req, res) => {
-    res.send('Hello Holberton School!');
+  res.send('Hello Holberton School!');
 });
 
 app.get('/students', (req, res) => {
-    countStudents(databasePath)
+  countStudents(databasePath)
     .then((data) => {
-        res.write('This is the list of our students\n');
-        res.end(data);
+      res.write('This is the list of our students\n');
+      res.end(data);
     })
     .catch((error) => {
-        res.end(error.message);
+      res.end(error.message);
     });
 });
 
