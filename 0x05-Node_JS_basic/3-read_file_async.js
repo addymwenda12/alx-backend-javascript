@@ -4,20 +4,20 @@ function countStudents(path) {
   return fs.readFile(path, 'utf-8')
     .then((data) => {
       const lines = data.split('\n');
-      const nonEmptyLines = lines.filter(line => line.trim() !== "");
+      const nonEmptyLines = lines.filter((line) => line.trim() !== '');
 
       const fieldsCount = {};
 
-      for (let i = 1; i < nonEmptyLines.length; i++) {
+      for (let i = 1; i < nonEmptyLines.length; i += 1) {
         const line = nonEmptyLines[i];
         const [firstName, , , field] = line.split(',');
         if (!fieldsCount[field]) {
           fieldsCount[field] = {
             count: 0,
-            students: []
+            students: [],
           };
         }
-        fieldsCount[field].count++;
+        fieldsCount[field].count += 1;
         fieldsCount[field].students.push(firstName.trim());
       }
 
@@ -25,7 +25,9 @@ function countStudents(path) {
       console.log(`Number of students: ${totalStudents}`);
 
       for (const field in fieldsCount) {
-        console.log(`Number of students in ${field}: ${fieldsCount[field].count}. List: ${fieldsCount[field].students.join(', ')}`);
+        if (Object.prototype.hasOwnProperty.call(fieldsCount, field)) {
+          console.log(`Number of students in ${field}: ${fieldsCount[field].count}. List: ${fieldsCount[field].students.join(', ')}`);
+        }
       }
     })
     .catch(() => {
